@@ -36,10 +36,10 @@ const goToRegister = () => {
 <template>
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
+      <v-col cols="12" sm="8" md="4" lg="3">
         <v-card>
           <v-card-title class="text-h5 text-center pa-4">
-            Login
+            Search Docs
           </v-card-title>
           <v-card-text>
             <v-form @submit.prevent="handleLogin">

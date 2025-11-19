@@ -95,6 +95,7 @@ watch([type, isBlocklisted, search], () => {
             block
             @click="clearFilters"
           >
+            <v-icon start>mdi-filter-remove</v-icon>
             Limpar
           </v-btn>
         </v-col>

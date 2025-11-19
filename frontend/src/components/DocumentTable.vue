@@ -16,6 +16,7 @@ interface Emits {
   (e: 'delete', id: string): void
   (e: 'toggle-blocklist', id: string): void
   (e: 'page-change', page: number): void
+  (e: 'limit-change', limit: number): void
 }
 
 const props = defineProps<Props>()
@@ -52,6 +53,10 @@ const handleToggleBlocklist = (id: string) => {
 const handlePageChange = (newPage: number) => {
   emit('page-change', newPage)
 }
+
+const handleLimitChange = (newLimit: number) => {
+  emit('limit-change', newLimit)
+}
 </script>
 
 <template>
@@ -61,6 +66,8 @@ const handlePageChange = (newPage: number) => {
       :items="documents"
       :loading="loading"
       :items-per-page="limit"
+      :items-per-page-options="[10, 25, 50, 100]"
+      @update:items-per-page="handleLimitChange"
       :server-items-length="total"
       :page="page"
       class="elevation-1"

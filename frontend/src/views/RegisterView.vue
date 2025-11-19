@@ -6,8 +6,8 @@ import { useAuth } from '@/composables/useAuth'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 const router = useRouter()
-const { login, snackbar, snackbarText, snackbarColor } = useAuth()
-const { showSuccess, showError } = useSnackbar()
+const { login } = useAuth()
+const { snackbar, snackbarText, snackbarColor, showSuccess, showError } = useSnackbar()
 
 const email = ref('')
 const password = ref('')
@@ -52,7 +52,7 @@ const goToLogin = () => {
 <template>
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
+      <v-col cols="12" sm="8" md="4" lg="3">
         <v-card>
           <v-card-title class="text-h5 text-center pa-4">
             Criar Conta

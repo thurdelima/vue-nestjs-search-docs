@@ -22,7 +22,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const existing = await this.userRepository.findOne({
-      where: { email: createUserDto.email, isDeleted: false },
+      where: { email: createUserDto.email },
     });
 
     if (existing) {

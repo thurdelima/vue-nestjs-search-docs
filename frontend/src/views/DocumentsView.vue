@@ -87,6 +87,10 @@ const handlePageChange = (newPage: number) => {
   filters.value.page = newPage
 }
 
+const handleLimitChange = (newLimit: number) => {
+  filters.value.limit = newLimit
+}
+
 const handleModalClose = () => {
   showCreateModal.value = false
   editingDocument.value = null
@@ -142,6 +146,7 @@ onMounted(() => {
               @delete="handleDelete"
               @toggle-blocklist="handleToggleBlocklist"
               @page-change="handlePageChange"
+              @limit-change="handleLimitChange"
             />
           </v-card-text>
         </v-card>
