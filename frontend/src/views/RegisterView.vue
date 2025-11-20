@@ -2,11 +2,9 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usersApi } from '@/api/users.api'
-import { useAuth } from '@/composables/useAuth'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 const router = useRouter()
-const { login } = useAuth()
 const { snackbar, snackbarText, snackbarColor, showSuccess, showError } = useSnackbar()
 
 const email = ref('')
@@ -33,10 +31,10 @@ const handleRegister = async () => {
       email: email.value,
       password: password.value
     })
-    showSuccess('Usuário criado com sucesso! Fazendo login...')
-    setTimeout(async () => {
-      await login(email.value, password.value)
-    }, 1000)
+    showSuccess('Usuário criado com sucesso! Redirecionando para login...')
+    setTimeout(() => {
+      router.push('/login')
+    }, 1500)
   } catch (error: any) {
     showError(error.response?.data?.message || 'Erro ao criar usuário')
   } finally {

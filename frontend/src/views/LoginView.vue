@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
+import scanningImg from '@/assets/img/scanning.png'
 
 const router = useRouter()
 const { login, snackbar, snackbarText, snackbarColor } = useAuth()
@@ -38,7 +39,8 @@ const goToRegister = () => {
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="4" lg="3">
         <v-card>
-          <v-card-title class="text-h5 text-center pa-4">
+          <v-card-title class="text-h5 text-center pa-4 d-flex align-center justify-center">
+            <img :src="scanningImg" width="32" height="32" class="mr-2" alt="Search Docs" />
             Search Docs
           </v-card-title>
           <v-card-text>

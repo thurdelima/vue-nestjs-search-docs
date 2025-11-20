@@ -6,6 +6,7 @@ import DocumentFormModal from '@/components/DocumentFormModal.vue'
 import DocumentTable from '@/components/DocumentTable.vue'
 import DocumentFilters from '@/components/DocumentFilters.vue'
 import type { FilterDocumentDto, Document } from '@/types/document.types'
+import scanningImg from '@/assets/img/scanning.png'
 
 const {
   documents,
@@ -120,7 +121,10 @@ onMounted(() => {
       <v-col cols="12">
         <v-card>
           <v-card-title class="d-flex justify-space-between align-center">
-            <span class="text-h5">Gerenciamento de Documentos</span>
+            <span class="text-h5 d-flex align-center">
+              <img :src="scanningImg" width="32" height="32" class="mr-2" alt="Gerenciamento de Documentos" />
+              Gerenciamento de Documentos
+            </span>
             <div>
               <v-btn color="primary" @click="handleCreate" class="mr-2">
                 <v-icon start>mdi-plus</v-icon>
