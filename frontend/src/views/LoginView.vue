@@ -20,13 +20,9 @@ const handleLogin = async () => {
   if (!isFormValid.value) return
 
   loading.value = true
-  try {
-    await login(email.value, password.value)
-  } catch (error) {
-    // Error já tratado no composable
-  } finally {
+  await login(email.value, password.value).finally(() => {
     loading.value = false
-  }
+  })
 }
 
 const goToRegister = () => {
