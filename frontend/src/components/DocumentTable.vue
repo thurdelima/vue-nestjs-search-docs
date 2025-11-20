@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useDocumentFormat } from '@/composables/useDocumentFormat'
 import type { Document } from '@/types/document.types'
+import { DocumentType } from '@/types/document.types'
 
 interface Props {
   documents: Document[]
@@ -29,7 +30,7 @@ const headers = [
   { title: 'Tipo', key: 'type', sortable: false },
   { title: 'Blocklist', key: 'isBlocklisted', sortable: false },
   { title: 'Criado em', key: 'createdAt', sortable: false },
-  { title: 'Ações', key: 'actions', sortable: false, align: 'end' }
+  { title: 'Ações', key: 'actions', sortable: false, align: 'end' as const }
 ]
 
 const totalPages = computed(() => Math.ceil(props.total / props.limit))
@@ -79,7 +80,7 @@ const handleLimitChange = (newLimit: number) => {
       </template>
 
       <template #item.type="{ item }">
-        <v-chip :color="item.type === 'CPF' ? 'blue' : 'green'" size="small">
+        <v-chip :color="item.type === DocumentType.CPF ? 'blue' : 'green'" size="small">
           {{ item.type }}
         </v-chip>
       </template>

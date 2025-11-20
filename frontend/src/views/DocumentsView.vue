@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useDocuments } from '@/composables/useDocuments'
 import { useAuth } from '@/composables/useAuth'
 import DocumentFormModal from '@/components/DocumentFormModal.vue'
 import DocumentTable from '@/components/DocumentTable.vue'
 import DocumentFilters from '@/components/DocumentFilters.vue'
 import type { FilterDocumentDto, Document } from '@/types/document.types'
+import { DocumentType } from '@/types/document.types'
 import scanningImg from '@/assets/img/scanning.png'
 
 const {
@@ -59,7 +60,7 @@ const handleToggleBlocklist = async (id: string) => {
 const handleFilterChange = (newFilters: FilterDocumentDto) => {
   const cleanedFilters: FilterDocumentDto = { ...newFilters }
   
-  if (cleanedFilters.type && cleanedFilters.type !== 'CPF' && cleanedFilters.type !== 'CNPJ') {
+  if (cleanedFilters.type && cleanedFilters.type !== DocumentType.CPF && cleanedFilters.type !== DocumentType.CNPJ) {
     delete cleanedFilters.type
   }
   

@@ -5,8 +5,7 @@ import type {
   Document,
   CreateDocumentDto,
   UpdateDocumentDto,
-  FilterDocumentDto,
-  DocumentsResponse
+  FilterDocumentDto
 } from '@/types/document.types'
 
 export const useDocumentsStore = defineStore('documents', () => {

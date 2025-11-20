@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { FilterDocumentDto, DocumentType } from '@/types/document.types'
+import type { FilterDocumentDto } from '@/types/document.types'
+import { DocumentType } from '@/types/document.types'
 
 interface Emits {
   (e: 'filter-change', filters: FilterDocumentDto): void
@@ -15,7 +16,7 @@ const search = ref('')
 const handleFilterChange = () => {
   const filters: FilterDocumentDto = {}
 
-  if (type.value === 'CPF' || type.value === 'CNPJ') {
+  if (type.value === DocumentType.CPF || type.value === DocumentType.CNPJ) {
     filters.type = type.value
   }
 
@@ -53,8 +54,8 @@ watch([type, isBlocklisted, search], () => {
             label="Tipo"
             :items="[
               { title: 'Todos', value: undefined },
-              { title: 'CPF', value: 'CPF' },
-              { title: 'CNPJ', value: 'CNPJ' }
+              { title: 'CPF', value: DocumentType.CPF },
+              { title: 'CNPJ', value: DocumentType.CNPJ }
             ]"
             variant="outlined"
             density="compact"

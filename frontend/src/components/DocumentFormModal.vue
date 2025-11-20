@@ -2,7 +2,8 @@
 import { ref, computed, watch } from 'vue'
 import { useDocuments } from '@/composables/useDocuments'
 import { useDocumentFormat } from '@/composables/useDocumentFormat'
-import type { Document, DocumentType } from '@/types/document.types'
+import type { Document } from '@/types/document.types'
+import { DocumentType } from '@/types/document.types'
 
 interface Props {
   modelValue: boolean
@@ -23,7 +24,7 @@ const { createDocument, updateDocument } = useDocuments()
 const { unformatDocument, formatDocument } = useDocumentFormat()
 
 const number = ref('')
-const type = ref<DocumentType>('CPF')
+const type = ref<DocumentType>(DocumentType.CPF)
 const loading = ref(false)
 
 const isEdit = computed(() => !!props.document)
@@ -34,7 +35,7 @@ const dialog = computed({
 
 const isFormValid = computed(() => {
   const cleaned = unformatDocument(number.value)
-  if (type.value === 'CPF') {
+  if (type.value === DocumentType.CPF) {
     return cleaned.length === 11
   } else {
     return cleaned.length === 14
@@ -43,7 +44,7 @@ const isFormValid = computed(() => {
 
 const resetForm = () => {
   number.value = ''
-  type.value = 'CPF'
+  type.value = DocumentType.CPF
 }
 
 const handleSave = async () => {
@@ -125,8 +126,8 @@ watch(
             v-model="type"
             label="Tipo de Documento"
             :items="[
-              { title: 'CPF', value: 'CPF' },
-              { title: 'CNPJ', value: 'CNPJ' }
+              { title: 'CPF', value: DocumentType.CPF },
+              { title: 'CNPJ', value: DocumentType.CNPJ }
             ]"
             variant="outlined"
             required
@@ -134,13 +135,13 @@ watch(
 
           <v-text-field
             v-model="number"
-            :label="type === 'CPF' ? 'CPF' : 'CNPJ'"
-            :placeholder="type === 'CPF' ? '000.000.000-00' : '00.000.000/0000-00'"
+            :label="type === DocumentType.CPF ? 'CPF' : 'CNPJ'"
+            :placeholder="type === DocumentType.CPF ? '000.000.000-00' : '00.000.000/0000-00'"
             variant="outlined"
             required
             :rules="[
               (v) => !!v || 'Número é obrigatório',
-              () => isFormValid || (type === 'CPF' ? 'CPF inválido' : 'CNPJ inválido')
+              () => isFormValid || (type === DocumentType.CPF ? 'CPF inválido' : 'CNPJ inválido')
             ]"
             class="mt-4"
           />
