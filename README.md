@@ -1,6 +1,11 @@
 # Search Docs - Sistema de Gerenciamento CPF/CNPJ
 
+
 Sistema completo para gerenciamento e validação de documentos CPF/CNPJ, desenvolvido com NestJS no backend e Vue.js 3 no frontend.
+
+## 🎨 Design System
+
+![Design System](./design_sistem.png)
 
 ## 🚀 Início Rápido
 
