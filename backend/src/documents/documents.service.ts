@@ -22,13 +22,19 @@ export class DocumentsService {
     const normalizedNumber = normalizeDocument(createDocumentDto.number);
 
     const existing = await this.documentRepository.findOne({
-      where: { number: normalizedNumber, isDeleted: false },
+      where: { number: normalizedNumber },
     });
 
     if (existing) {
-      throw new ConflictException(
-        `Documento ${normalizedNumber} já está cadastrado`,
-      );
+      if (existing.isDeleted) {
+        existing.isDeleted = false;
+        existing.type = createDocumentDto.type;
+        return await this.documentRepository.save(existing);
+      } else {
+        throw new ConflictException(
+          `Documento ${normalizedNumber} já está cadastrado`,
+        );
+      }
     }
 
     const document = this.documentRepository.create({
@@ -107,7 +113,7 @@ export class DocumentsService {
       const normalizedNumber = normalizeDocument(updateDocumentDto.number);
 
       const existing = await this.documentRepository.findOne({
-        where: { number: normalizedNumber, isDeleted: false },
+        where: { number: normalizedNumber },
       });
 
       if (existing && existing.id !== id) {
