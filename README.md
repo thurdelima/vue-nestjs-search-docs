@@ -7,6 +7,10 @@ Sistema completo para gerenciamento e validação de documentos CPF/CNPJ, desenv
 
 ![Design System](./design_sistem.png)
 
+### 🎬 Demonstração
+
+![Search Docs Demo](./search_docs.gif)
+
 ## 🚀 Início Rápido
 
 ### Pré-requisitos
