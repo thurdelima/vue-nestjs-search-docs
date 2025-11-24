@@ -69,7 +69,7 @@ describe('UsersService', () => {
       expect(result).not.toHaveProperty('password');
       expect(result.email).toBe(createDto.email);
       expect(mockRepository.findOne).toHaveBeenCalledWith({
-        where: { email: createDto.email, isDeleted: false },
+        where: { email: createDto.email },
       });
     });
 

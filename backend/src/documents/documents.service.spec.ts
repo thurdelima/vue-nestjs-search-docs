@@ -67,7 +67,7 @@ describe('DocumentsService', () => {
 
       expect(result).toEqual(document);
       expect(mockRepository.findOne).toHaveBeenCalledWith({
-        where: { number: '12345678909', isDeleted: false },
+        where: { number: '12345678909' },
       });
       expect(mockRepository.create).toHaveBeenCalledWith({
         number: '12345678909',
@@ -87,6 +87,7 @@ describe('DocumentsService', () => {
         id: '1',
         number: '12345678909',
         type: DocumentType.CPF,
+        isDeleted: false,
       };
 
       mockRepository.findOne.mockResolvedValue(existingDocument);
